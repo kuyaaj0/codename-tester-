@@ -141,6 +141,21 @@ class PlayState extends MusicBeatState
 	@:dox(hide) private function get_downscroll():Bool  {return camHUD.downscroll;}
 
 	/**
+	 * Whenever the game is in middlescroll or not. (Can be set on center)
+	 */
+public var middlescroll(get, set):Bool;
+
+@:dox(hide) private function set_middlescroll(v:Bool):Bool {
+    camHUD.middlescroll = v; // Update HudCamera
+    return Options.middlescroll = v; // Save preference
+}
+
+@:dox(hide) private function get_middlescroll():Bool {
+    return Options.middlescroll; // Retrieve preference
+}
+
+	/**
+	
 	 * Instrumental sound (Inst.ogg).
 	 */
 	public var inst:FlxSound;
@@ -919,7 +934,7 @@ class PlayState extends MusicBeatState
 				var spr = event.spritePath;
 				if (!Assets.exists(spr)) spr = Paths.image('$spr');
 
-				sprite = new FunkinSprite().loadAnimatedGraphic(spr);
+				sprite = new FlxSprite().loadAnimatedGraphic(spr);
 				sprite.scrollFactor.set();
 				sprite.scale.set(event.scale, event.scale);
 				sprite.updateHitbox();
